@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<ul>
+
+<li>{{book.title}}</li> 
+<li><a href="{% url 'onlyAuthor' book.bookID%}">{{book.authors}}</a></li>
+<li>{{book.average_rating}}</li>
+<li>{{book.isbn}}</li>
+
+</ul>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<ul>
+    <!-- Iterate over object_list -->
+    {% for object in object_list %}
+    <!-- Display Objects -->
+    {% if object.authors|length <= 30  and object.publisher|length <= 20 and object.text_reviews_count > 10 %}
+    <div  style='background-color:{% cycle 'lightblue' 'pink' 'yellow' 'coral' 'grey' %}'>
+    {% filter lower %}
+    <li>{{ object.title }}</li>
+    {% endfilter %}
+    
+    <li>{{ object.authors }}</li>
+    <li>Tamaño del autor: {{object.authors|length}}</li>
+   
+    <li>{{ object.publisher }}</li>
+    <li>Tamaño del publisher: {{object.publisher|length}}</li>
+
+    <li>Text count: {{object.text_reviews_count}}</li>
+    {% filter upper %}
+    <li>{{ object.language_code }}</li>
+    {% endfilter %}
+     
+    </div>
+    {% else %}
+    <h2>El registro no cumple las condiciones</h2>
+    {% endif %} 
+    <hr/>
+    <!-- If object_list is empty  -->
+    {% empty %}
+    <li>No objects yet.</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
