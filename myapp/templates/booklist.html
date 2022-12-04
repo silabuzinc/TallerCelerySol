@@ -3,6 +3,8 @@
 {% block content %}
 <ul>
     <!-- Iterate over object_list -->
+    {% load cache %}
+    {% cache 300 forBooks %}
     {% for object in object_list %}
     <!-- Display Objects -->
     {% if object.authors|length <= 30  and object.publisher|length <= 20 and object.text_reviews_count > 10 %}
@@ -31,6 +33,7 @@
     {% empty %}
     <li>No objects yet.</li>
     {% endfor %}
+    {% endcache %}
 </ul>
 
 {% endblock %}
